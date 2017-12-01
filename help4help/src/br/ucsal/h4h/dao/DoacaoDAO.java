@@ -10,6 +10,7 @@ import java.util.List;
 import br.ucsal.h4h.model.Doacao;
 import br.ucsal.h4h.model.Instituicao;
 import br.ucsal.h4h.model.Usuario;
+import br.ucsal.h4h.model.TipoDoacao;
 import br.ucsal.h4h.util.Conexao;
 
 public class DoacaoDAO {
