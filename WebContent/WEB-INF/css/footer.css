@@ -1,0 +1,21 @@
+<style>
+footer {
+	font-size: 1;
+   position: fixed;
+   bottom: 0;
+   width: 100%;
+   background-color: transparent;
+   color: black;
+   text-align: center;
+
+}
+text{
+color: black;
+}
+
+#ky{
+color: orange;
+}
+
+
+</style>
