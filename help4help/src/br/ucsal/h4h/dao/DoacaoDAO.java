@@ -27,11 +27,12 @@ public class DoacaoDAO {
 
 		try {
 			stmt = conexao.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery("select from doacoes where ");
+			ResultSet rs = stmt.executeQuery("select id_doacao, data_doacao, quantidade_doacao,id_instituicao,login_instituicao,senha_instituicao,email_instituicao,id_usuario,login_usuario,senha_usuario,email_usuario,id.tipo_doacao,nome_tipo from doacoes,instituicoes,usuarios");
 			while (rs.next()) {
 				Doacao d = new Doacao();
-				d.setId(rs.getInt("cod_doacao"));
-
+				d.setId(rs.getInt("id_doacao"));
+				d.setDataDoacao(rs.getDate("data_doacao"));
+				d.setQuantidade(rs.getString("quantidade_doacao"));
 				Usuario u = new Usuario();
 				u.setId(rs.getInt("id_usuario"));
 				u.setLogin(rs.getString("login_usuario"));
@@ -41,9 +42,13 @@ public class DoacaoDAO {
 				Instituicao i = new Instituicao();
 				i.setId(rs.getInt("id_instituicao"));
 				i.setLogin(rs.getString("login_instituicao"));
-				i.setSenha(rs.getString("senha_instituicao,"));
+				i.setSenha(rs.getString("senha_instituicao"));
 				i.setEmail(rs.getString("email.instituicoes"));
 				d.setInstituicao(i);
+				TipoDoacao t=new TipoDoacao();
+				t.setId(rs.getInt("id.tipo_doacao "));
+				t.setNomeTipo(rs.getString("nome_tipo"));
+				d.setTipoDoacao(t);
 				doacao.add(d);
 
 			}
@@ -58,12 +63,12 @@ public class DoacaoDAO {
 	public void inserir(Doacao doacao) {
 
 		try {
-			PreparedStatement ps = conexao.getConnection().prepareStatement("insert into doacoes () values ();");
-
-			ps.setInt(2, doacao.getUsuario().getId());
-			ps.setString(3, doacao.getUsuario().getLogin());
-			ps.setInt(4, doacao.getInstituicao().getId());
-			ps.setString(5, doacao.getInstituicao().getLogin());
+			PreparedStatement ps = conexao.getConnection().prepareStatement("insert into doacoes (data_doacao, quantidade_doacao,id_instituicao,id_doacao,id.tipo_doacao) values (?,?,?,?,?);");
+                        ps.setDate(1, doacao.getDataDoacao());
+			ps.setString(2, doacao.getQuantidade());
+			ps.setInt(3, doacao.getInstituicao().getId());
+			ps.setInt(4, doacao.getUsuario().getId());
+			ps.setInt(5, doacao.getTipoDoacao().getId());
 			ps.execute();
 			ps.close();
 		} catch (SQLException e) {
@@ -89,10 +94,12 @@ public class DoacaoDAO {
 		try {
 
 			PreparedStatement ps = conexao.getConnection()
-					.prepareStatement("update doacoes set EDITAR=?,EDITAR = ? where id =?;");
-			ps.setString(1, doacao.getQuantidade());
-			ps.setString(2, doacao.getDataDoacao());
-			ps.setInt(3, doacao.getId());
+					.prepareStatement("update doacoes set data_doacao=?, quantidade_doacao=?,id_instituicao=?,id_doacao=?,id.tipo_doacao=? where id =?;");
+			ps.setDate(1, doacao.getDataDoacao());
+			ps.setString(2, doacao.getQuantidade());
+			ps.setInt(3, doacao.getInstituicao().getId());
+			ps.setInt(4, doacao.getUsuario().getId());
+			ps.setInt(5, doacao.getTipoDoacao().getId());
 			ps.execute();
 			ps.close();
 		} catch (SQLException e) {
