@@ -1,9 +1,11 @@
 package br.ucsal.h4h.model;
 
+import java.sql.Date;
+
 public class Doacao {
 
 	private Integer id;
-	private String dataDoacao;
+	private Date dataDoacao;
 	private String quantidade;
 	
 	private Usuario usuario;
@@ -16,11 +18,11 @@ public class Doacao {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getDataDoacao() {
+	public Date getDataDoacao() {
 		return dataDoacao;
 	}
-	public void setDataDoacao(String dataDoacao) {
-		this.dataDoacao = dataDoacao;
+	public void setDataDoacao(Date date) {
+		this.dataDoacao = date;
 	}
 	public String getQuantidade() {
 		return quantidade;
