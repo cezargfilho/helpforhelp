@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Lista de usuários</title>
+<title>Lista de usuÃ¡rios</title>
 </head>
 <body>
 <table>
@@ -14,11 +14,11 @@
 <th>Senha</th>
 <th>Email</th>
 </tr>
-<c:forEach var="cj" items="${lista} }">
+<c:forEach var="c" items="${listaUsuario} }">
 <tr>
-<td>${cj.login}</td>
-<td>${cj.senha}</td>
-<td>${cj.email}</td>
+<td>${c.login}</td>
+<td>${c.senha}</td>
+<td>${c.email}</td>
 </tr>
 </c:forEach>
 </table>>
